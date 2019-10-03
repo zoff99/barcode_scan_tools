@@ -129,7 +129,7 @@ for (( c=1; c<=$days; c++ )); do
     fi
 
     echo '</b></td>' >> templist.html
-    echo -n '<td class="td2"><b>' >> templist.html
+    echo -n '        <td class="td2"><b>' >> templist.html
 
     if [ $m_count != 0 ]; then
         fives=$(($m_count / 5))
@@ -148,8 +148,8 @@ for (( c=1; c<=$days; c++ )); do
         done
     fi
 
-    echo -n '</b></td>' >> templist.html
-    echo -n '<td class="td2"><b>' >> templist.html
+    echo '</b></td>' >> templist.html
+    echo -n '        <td class="td2"><b>' >> templist.html
 
     if [ $m_count != 0 ]; then
         fives=$(($z_count / 5))
