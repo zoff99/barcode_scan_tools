@@ -2,3 +2,4 @@ _data_/db/*
 _data_/export/ean_codes.txt
 _data_/export/sqldb/geiger.sqlite
 _data_/collect_data.sh
+_data_/export/templist.html
