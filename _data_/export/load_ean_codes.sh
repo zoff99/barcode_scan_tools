@@ -4,8 +4,8 @@ sqldb_dir="./sqldb/"
 sqldb_file="$sqldb_dir"/"geiger.sqlite"
 
 # -------------------------------------
-# see: https://opengtindb.org/index.php
-# and: https://www.codecheck.info/so-gehts/start
+# see: https://www.codecheck.info/so-gehts/start
+# and: https://opengtindb.org/index.php
 # -------------------------------------
 
 _HOME2_=$(dirname $0)

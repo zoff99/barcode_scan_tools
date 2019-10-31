@@ -76,6 +76,7 @@ for (( c=1; c<=$days; c++ )); do
     where d.datum='"'""$cur_datum""'"'
     and c.type='"'"'b'"'"'
     and c.code=d.code
+    and c.valid='"'"'1'"'"'
     \n' | sqlite3 "$sqldb_file"|grep -v '^$')
 
     if [ "$b_count""x" == "x" ]; then
@@ -87,6 +88,7 @@ for (( c=1; c<=$days; c++ )); do
     where d.datum='"'""$cur_datum""'"'
     and c.type='"'"'m'"'"'
     and c.code=d.code
+    and c.valid='"'"'1'"'"'
     \n' | sqlite3 "$sqldb_file"|grep -v '^$')
 
     if [ "$m_count""x" == "x" ]; then
@@ -98,6 +100,7 @@ for (( c=1; c<=$days; c++ )); do
     where d.datum='"'""$cur_datum""'"'
     and c.type='"'"'z'"'"'
     and c.code=d.code
+    and c.valid='"'"'1'"'"'
     \n' | sqlite3 "$sqldb_file"|grep -v '^$')
 
     if [ "$z_count""x" == "x" ]; then

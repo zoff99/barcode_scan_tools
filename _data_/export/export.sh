@@ -83,19 +83,29 @@ ls -1 | while read datedir ; do
     cd "$export_data_dir"
     cd "$datedir""/"
     ls -1 | while read code ; do
-        echo -n "  + code:""$code -> "
 
-        amount="$(read_uint32_from_binfile "$code" 2>/dev/null)"
-        if [ "$amount" -gt "4000" ]; then
-            echo "-ERROR-"
-        else
-            echo "$amount"
-            add_to_sqldb "$datedir" "$code" "$amount" 2>/dev/null
+        code=$(echo "$code" | tr -dc '[:alnum:]' 2>/dev/null | head -1 2>/dev/null)
+
+        if [ "$code""x" != "x" ]; then
+            echo -n "  + code:""$code -> "
+
+            amount="$(read_uint32_from_binfile "$code" 2>/dev/null)"
+
+            if [ "$amount""x" == "x" ]; then
+                echo "-ERROR-"
+            else
+                if [ "$amount" -gt "4000" ]; then
+                    echo "-ERROR-"
+                else
+                    echo "$amount"
+                    add_to_sqldb "$datedir" "$code" "$amount" 2>/dev/null
+                fi
+            fi
+
+            cd "$_HOME_"
+            cd "$export_data_dir"
+            cd "$datedir""/"
         fi
-
-        cd "$_HOME_"
-        cd "$export_data_dir"
-        cd "$datedir""/"
     done
 done
 
