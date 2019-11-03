@@ -12,9 +12,42 @@ export _HOME_
 
 printf 'select substr(datum,6,2) as ___monat,
 sum(anzahl) as summe_bier_mate_zuckerlw
-from drinks group by ___monat
+from drinks
+where code in (select distinct code from ean_codes where valid='"'""1""'"')
+group by ___monat
 \n'| sqlite3 -header -line "$sqldb_file"|grep -v '^$'
 echo ""
+
+printf 'select substr(datum,6,2) as ___monat,
+sum(anzahl) as summe_bier
+from drinks
+where code in (select distinct code from ean_codes
+where valid='"'""1""'"'
+and type='"'""b""'"')
+group by ___monat
+\n'| sqlite3 -header -line "$sqldb_file"|grep -v '^$'
+echo ""
+
+printf 'select substr(datum,6,2) as ___monat,
+sum(anzahl) as summe_mate
+from drinks
+where code in (select distinct code from ean_codes
+where valid='"'""1""'"'
+and type='"'""m""'"')
+group by ___monat
+\n'| sqlite3 -header -line "$sqldb_file"|grep -v '^$'
+echo ""
+
+printf 'select substr(datum,6,2) as ___monat,
+sum(anzahl) as summe_zuckerlw
+from drinks
+where code in (select distinct code from ean_codes
+where valid='"'""1""'"'
+and type='"'""z""'"')
+group by ___monat
+\n'| sqlite3 -header -line "$sqldb_file"|grep -v '^$'
+echo ""
+
 
 
 printf 'select distinct(datum) as ""
