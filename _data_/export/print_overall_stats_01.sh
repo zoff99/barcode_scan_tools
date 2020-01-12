@@ -23,7 +23,7 @@ echo ""
 echo ""
 
 echo "====================================================================="
-echo "Verbrauch pro 30 Tage (mit Daten der letzten $days_span days Tage)"
+echo "Verbrauch pro 30 Tage (mit Daten der letzten $days_span Tage)"
 echo "====================================================================="
 
 echo ""
@@ -48,7 +48,7 @@ order by kisten desc
 echo ""
 
 echo "====================================================================="
-echo "Verbrauch der letzten $days_span days Tage"
+echo "Verbrauch der letzten $days_span Tage"
 echo "====================================================================="
 
 
