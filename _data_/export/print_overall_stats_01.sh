@@ -45,7 +45,32 @@ and d.datum BETWEEN "2019-10-05" AND "2200-01-01"
 group by d.code
 order by kisten desc
 \n'| sqlite3 -header "$sqldb_file"|grep -v '^$'|cut -d'|' -f 2-|awk -F"|" '{ printf "%-45s %s\n",$1,$3 }'
+
+echo "-----------------------------------------------------"
+
+printf '
+select cast(sum(a.nums) as INTEGER) as "SUMME Kisten pro 30 Tage" from
+(
+select
+(
+CAST(
+(
+(sum(d.anzahl) * 30.0 / '"$days_span"' / c.per_crate )
+)
+as FLOAT
+)
+) as nums
+from drinks d, ean_codes c
+where d.code=c.code
+and c.valid=1
+and d.datum BETWEEN "2019-10-05" AND "2200-01-01"
+group by d.code
+) a
+\n'| sqlite3 -header "$sqldb_file"|grep -v '^$'|cut -d'|' -f 2-|awk -F"|" '{ printf "%-45s %s\n",$1,$3 }'
 echo ""
+
+
+
 
 echo "====================================================================="
 echo "Verbrauch der letzten $days_span Tage"
