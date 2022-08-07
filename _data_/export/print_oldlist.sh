@@ -1,4 +1,14 @@
 #! /bin/bash
+#####################################################
+#####################################################
+#
+# this script will generate the "old" "stricherlliste"
+# as HTML document
+# and as PDF document (using https://github.com/reingart/pyfpdf)
+#
+#
+#####################################################
+#####################################################
 
 
 sqldb_dir="./sqldb/"
@@ -61,6 +71,25 @@ table, th, td {
     <tr>' > templist.html
 
 
+echo '#! /usr/bin/python
+from fpdf import FPDF
+
+pdf = FPDF(unit="mm")
+pdf.add_page()
+pdf.set_font("Courier", "", 11)
+
+pdf.image(x=20,y=6,w=9,h=9,name="595px-Atomic.svg.png")
+
+' > templist.pdf.sh
+
+ printf '           | Bier      | Mate      | ZWasser      \n'
+
+echo 'pdf.cell(50)' >> templist.pdf.sh
+echo 'pdf.cell(40, 8, "Bier", border=1)' >> templist.pdf.sh
+echo 'pdf.cell(40, 8, "Mate", border=1)' >> templist.pdf.sh
+echo 'pdf.cell(40, 8, "ZWasser", border=1)' >> templist.pdf.sh
+echo 'pdf.ln(8)' >> templist.pdf.sh
+
 for (( c=1; c<=$days; c++ )); do
 
     day="$c"
@@ -108,6 +137,13 @@ for (( c=1; c<=$days; c++ )); do
     fi
 
     printf '%s |    %4d   |    %4d   |   %4d\n' "$cur_datum" "$b_count" "$m_count" "$z_count"
+
+    echo 'pdf.cell(10)' >> templist.pdf.sh
+    echo 'pdf.cell(40, 8, "'"$cur_datum"'", border=1)' >> templist.pdf.sh
+    echo 'pdf.cell(40, 8, "'"$b_count"'", border=1)' >> templist.pdf.sh
+    echo 'pdf.cell(40, 8, "'"$m_count"'", border=1)' >> templist.pdf.sh
+    echo 'pdf.cell(40, 8, "'"$z_count"'", border=1)' >> templist.pdf.sh
+    echo 'pdf.ln(8)' >> templist.pdf.sh
 
 
     echo -n ' 
@@ -183,3 +219,8 @@ echo '
 </body>
 </html>
 ' >> templist.html
+
+echo 'pdf.output("templist.pdf", "F")' >> templist.pdf.sh
+
+python ./templist.pdf.sh
+rm -f ./templist.pdf.sh
