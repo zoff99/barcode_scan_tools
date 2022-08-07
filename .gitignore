@@ -5,3 +5,5 @@ _data_/export/sqldb/geiger.sqlcipher
 _data_/export/convert_to_sqlcipher.sh
 _data_/collect_data.sh
 _data_/export/templist.html
+_data_/export/templist.pdf.sh
+_data_/export/templist.pdf
