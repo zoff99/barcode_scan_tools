@@ -150,7 +150,7 @@ for (( c=1; c<=$days; c++ )); do
         <td><font size="4"><b>'"$cur_datum"'</b></font></td>
         <td class="td2"><b>' >> templist.html
 
-    if [ $m_count != 0 ]; then
+    if [ $b_count != 0 ]; then
         fives=$(($b_count / 5))
         ones=$(($b_count % 5))
 
@@ -190,7 +190,7 @@ for (( c=1; c<=$days; c++ )); do
     echo '</b></td>' >> templist.html
     echo -n '        <td class="td2"><b>' >> templist.html
 
-    if [ $m_count != 0 ]; then
+    if [ $z_count != 0 ]; then
         fives=$(($z_count / 5))
         ones=$(($z_count % 5))
 
