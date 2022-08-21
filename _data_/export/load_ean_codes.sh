@@ -5,7 +5,16 @@ sqldb_file="$sqldb_dir"/"geiger.sqlite"
 
 # -------------------------------------
 # see: https://www.codecheck.info/so-gehts/start
+#        https://www.codecheck.info/product.search?q=<ean number>&OK=Suchen
+#
 # and: https://opengtindb.org/index.php
+#        https://opengtindb.org/index.php?cmd=ean1&SID=&ean=<ean number>
+# -------------------------------------
+
+# -------------------------------------
+#
+# HINT: in the file "ean_codes.txt" you must escape '%' as '%%'
+#
 # -------------------------------------
 
 _HOME2_=$(dirname $0)
