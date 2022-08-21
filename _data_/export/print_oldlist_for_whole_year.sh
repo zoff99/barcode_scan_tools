@@ -6,6 +6,10 @@
 # as HTML document
 # and as PDF document (using https://github.com/reingart/pyfpdf)
 #
+#       git clone https://github.com/reingart/pyfpdf.git
+#       cd pyfpdf
+#       sudo python setup.py install
+#
 # for 1 whole year
 #
 #####################################################
